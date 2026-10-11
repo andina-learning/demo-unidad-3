@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="1200" height="440" role="img"
+     aria-label="Cuatro hojas en fila, unidas por flechas de izquierda a derecha. En el centro, la más grande y la única contorneada en amarillo: la definición de la métrica «atención», con su texto escrito, la persona que responde por ella y su firma, y otras hojas asomando detrás, que son sus versiones. A la izquierda, un comité de tres personas sentado a una mesa, con una matriz de decisiones debajo: es el gobierno, que decide. A la derecha de la definición, una base de datos de la que salen un tablero y un reporte con la misma cifra y un signo igual entre los dos: es la gestión, que ejecuta. Al final, una persona del dominio con una lista de registros revisados uno a uno, uno de ellos marcado como excepción, y una flecha que vuelve sobre la definición: es la administración cotidiana, que vela.">
+  <!-- Ilustración de marca · Universidad Andina Virtual · Unidad 3 (v2), tema 1 (apertura)
+       Concepto (DI): «distinguir qué se decide, quién lo decide y cómo se hace exigible» y
+       la definición «define quién puede tomar qué decisiones, bajo qué reglas y con qué
+       consecuencias». Un solo activo de datos, la métrica «atención», y las tres funciones
+       alrededor: «El gobierno decide», «La gestión ejecuta», la administración cotidiana
+       «vela por el cumplimiento de esas reglas en el día a día». La hoja central cumple la
+       regla de la Ventana de detalle: «toda métrica publicada tiene una definición escrita,
+       un responsable y una versión»; por eso el tablero y el reporte «coinciden».
+       Guion en la respuesta del agente ilustrador (pendiente de copiar a insumos/ILUSTRACIONES.md).
+       Único amarillo: el contorno continuo de la definición de «atención». En
+       ilustracion-dos-cifras.svg el mismo amarillo, punteado, era la regla que no existía. -->
+  <defs>
+    <linearGradient id="ilu-quiendecide-fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#E6F3FA"/>
+      <stop offset="55%"  stop-color="#E8EDF5"/>
+      <stop offset="100%" stop-color="#F5F8FB"/>
+    </linearGradient>
+    <filter id="ilu-quiendecide-sombra" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#132B41" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="440" rx="18" fill="url(#ilu-quiendecide-fondo)"/>
+
+  <!-- Las versiones anteriores, asomando detrás de la definición -->
+  <g fill="#FFFFFF" stroke="#132B41" stroke-width="2" stroke-opacity=".16">
+    <rect x="348" y="50" width="224" height="120" rx="14"/>
+    <rect x="334" y="62" width="252" height="120" rx="14"/>
+  </g>
+
+  <!-- Las cuatro hojas -->
+  <g filter="url(#ilu-quiendecide-sombra)" fill="#FFFFFF">
+    <rect x="40"  y="96" width="240" height="232" rx="16"/>
+    <rect x="320" y="76" width="280" height="272" rx="16"/>
+    <rect x="640" y="96" width="240" height="232" rx="16"/>
+    <rect x="920" y="96" width="240" height="232" rx="16"/>
+  </g>
+
+  <!-- ══ Gobierno · decide: el comité y su matriz de decisiones ══ -->
+  <g fill="none" stroke="#00417B" stroke-width="4" stroke-linecap="round">
+    <circle cx="112" cy="136" r="13"/>
+    <circle cx="160" cy="136" r="13"/>
+    <circle cx="208" cy="136" r="13"/>
+    <path d="M92 174 a20 15 0 0 1 40 0"/>
+    <path d="M140 174 a20 15 0 0 1 40 0"/>
+    <path d="M188 174 a20 15 0 0 1 40 0"/>
+  </g>
+  <!-- la mesa -->
+  <rect x="72" y="174" width="176" height="10" rx="5" fill="#132B41" opacity=".85"/>
+  <!-- la matriz: para cada decisión, quién la toma -->
+  <g fill="#00417B" opacity=".55">
+    <rect x="120" y="210" width="36" height="24" rx="4"/>
+    <rect x="208" y="242" width="36" height="24" rx="4"/>
+    <rect x="76"  y="274" width="36" height="24" rx="4"/>
+  </g>
+  <g fill="none" stroke="#132B41" stroke-width="2" opacity=".22">
+    <rect x="72" y="206" width="176" height="96" rx="6"/>
+    <line x1="72"  y1="238" x2="248" y2="238"/>
+    <line x1="72"  y1="270" x2="248" y2="270"/>
+    <line x1="116" y1="206" x2="116" y2="302"/>
+    <line x1="160" y1="206" x2="160" y2="302"/>
+    <line x1="204" y1="206" x2="204" y2="302"/>
+  </g>
+
+  <!-- ══ La métrica «atención»: definición escrita, un responsable y una versión ══ -->
+  <rect x="344" y="100" width="136" height="30" rx="15" fill="#00417B" opacity=".12"/>
+  <text x="412" y="120" text-anchor="middle" font-family="Manrope, system-ui, sans-serif"
+        font-size="15" font-weight="600" fill="#132B41">“atención”</text>
+  <!-- el texto de la definición -->
+  <g fill="#132B41" opacity=".25">
+    <rect x="344" y="150" width="224" height="9" rx="4.5"/>
+    <rect x="344" y="170" width="200" height="9" rx="4.5"/>
+    <rect x="344" y="190" width="232" height="9" rx="4.5"/>
+  </g>
+  <rect x="344" y="244" width="232" height="2.5" rx="1.25" fill="#132B41" opacity=".12"/>
+  <!-- quien responde por ella, y su firma -->
+  <circle cx="358" cy="276" r="11" fill="none" stroke="#00417B" stroke-width="4"/>
+  <path d="M339 310 a19 14 0 0 1 38 0" fill="none" stroke="#00417B" stroke-width="4" stroke-linecap="round"/>
+  <path d="M394 290 c 6 -14 12 -14 14 0 s 10 10 16 -2 s 12 -10 16 2 s 10 6 24 -6"
+        fill="none" stroke="#132B41" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+  <rect x="392" y="302" width="120" height="2.5" rx="1.25" fill="#132B41" opacity=".25"/>
+  <!-- los tres rótulos de la regla, literales del DI -->
+  <g font-family="Manrope, system-ui, sans-serif" font-size="13" font-weight="600" fill="#00417B">
+    <text x="576" y="120" text-anchor="end">una versión</text>
+    <text x="344" y="226">definición escrita</text>
+    <text x="344" y="336">un responsable</text>
+  </g>
+  <!-- ÚNICO AMARILLO: la definición con dueño, la decisión que el gobierno vuelve exigible -->
+  <rect x="320" y="76" width="280" height="272" rx="16" fill="none" stroke="#F0B443" stroke-width="4"/>
+
+  <!-- ══ Gestión · ejecuta: la base de datos calcula; tablero y reporte coinciden ══ -->
+  <path d="M716 124 v64 a44 12 0 0 0 88 0 v-64" fill="#DCE8F3" stroke="#00417B" stroke-width="3" opacity=".9"/>
+  <g fill="none" stroke="#00417B" stroke-width="3" opacity=".35">
+    <path d="M716 146 a44 12 0 0 0 88 0"/>
+    <path d="M716 168 a44 12 0 0 0 88 0"/>
+  </g>
+  <ellipse cx="760" cy="124" rx="44" ry="12" fill="#C5DCEB" stroke="#00417B" stroke-width="3"/>
+  <g fill="none" stroke="#00417B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".55">
+    <path d="M748 210 L712 232"/>
+    <path d="M772 210 L808 230"/>
+  </g>
+  <!-- el tablero -->
+  <rect x="660" y="240" width="88" height="56" rx="8" fill="#DCE8F3" stroke="#132B41" stroke-width="3" opacity=".9"/>
+  <rect x="696" y="296" width="16" height="8" fill="#132B41" opacity=".3"/>
+  <rect x="684" y="304" width="40" height="5" rx="2.5" fill="#132B41" opacity=".3"/>
+  <g fill="#132B41" opacity=".85">
+    <rect x="676" y="254" width="12" height="28" rx="4"/>
+    <rect x="692" y="254" width="12" height="28" rx="4"/>
+    <rect x="708" y="254" width="12" height="28" rx="4"/>
+    <rect x="724" y="270" width="10" height="12" rx="3"/>
+  </g>
+  <!-- el reporte -->
+  <rect x="776" y="236" width="80" height="72" rx="6" fill="#FFFFFF" stroke="#132B41" stroke-width="2.5" opacity=".5"/>
+  <g fill="#132B41" opacity=".85">
+    <rect x="788" y="248" width="12" height="28" rx="4"/>
+    <rect x="804" y="248" width="12" height="28" rx="4"/>
+    <rect x="820" y="248" width="12" height="28" rx="4"/>
+    <rect x="836" y="264" width="10" height="12" rx="3"/>
+  </g>
+  <g fill="#132B41" opacity=".2">
+    <rect x="788" y="286" width="56" height="6" rx="3"/>
+    <rect x="788" y="297" width="40" height="6" rx="3"/>
+  </g>
+  <!-- la misma cifra en los dos -->
+  <g fill="#00417B" opacity=".62">
+    <rect x="754" y="260" width="16" height="5" rx="2.5"/>
+    <rect x="754" y="271" width="16" height="5" rx="2.5"/>
+  </g>
+
+  <!-- ══ Administración cotidiana · vela: quien conoce el dominio revisa registro por registro ══ -->
+  <circle cx="1040" cy="132" r="13" fill="none" stroke="#00417B" stroke-width="4"/>
+  <path d="M1020 170 a20 15 0 0 1 40 0" fill="none" stroke="#00417B" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#00417B" opacity=".85">
+    <circle cx="954" cy="200" r="10"/>
+    <circle cx="954" cy="228" r="10"/>
+    <circle cx="954" cy="284" r="10"/>
+  </g>
+  <g fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M949 200 l4 4 7 -8"/>
+    <path d="M949 228 l4 4 7 -8"/>
+    <path d="M949 284 l4 4 7 -8"/>
+  </g>
+  <!-- la excepción, retenida y por resolver -->
+  <circle cx="954" cy="256" r="10" fill="none" stroke="#132B41" stroke-width="2.5" opacity=".7"/>
+  <path d="M950 252 l8 8 M958 252 l-8 8" fill="none" stroke="#132B41" stroke-width="2.5"
+        stroke-linecap="round" opacity=".7"/>
+  <g fill="#132B41" opacity=".25">
+    <rect x="976" y="195.5" width="148" height="9" rx="4.5"/>
+    <rect x="976" y="223.5" width="124" height="9" rx="4.5"/>
+    <rect x="976" y="251.5" width="140" height="9" rx="4.5"/>
+    <rect x="976" y="279.5" width="112" height="9" rx="4.5"/>
+  </g>
+
+  <!-- Del que decide al que ejecuta y al que vela -->
+  <g fill="none" stroke="#00417B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".75">
+    <line x1="288" y1="212" x2="312" y2="212"/>
+    <path d="M306 204 l8 8 -8 8"/>
+    <line x1="608" y1="212" x2="632" y2="212"/>
+    <path d="M626 204 l8 8 -8 8"/>
+    <line x1="888" y1="212" x2="912" y2="212"/>
+    <path d="M906 204 l8 8 -8 8"/>
+  </g>
+
+  <!-- Quien vela lo hace contra la definición: la flecha vuelve sobre ella -->
+  <g fill="none" stroke="#00417B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".55">
+    <path d="M1040 88 C 1030 16, 600 12, 560 40"/>
+    <path d="M552 34 l8 10 8 -10"/>
+  </g>
+
+  <!-- Las tres funciones y lo que hace cada una, literales del DI -->
+  <g font-family="Manrope, system-ui, sans-serif" font-size="17" text-anchor="middle">
+    <g font-weight="600" fill="#132B41">
+      <text x="160"  y="374">gobierno</text>
+      <text x="760"  y="374">gestión</text>
+      <text x="1040" y="374">administración cotidiana</text>
+    </g>
+    <g font-weight="400" fill="#00417B">
+      <text x="160"  y="400">decide</text>
+      <text x="760"  y="400">ejecuta</text>
+      <text x="1040" y="400">vela</text>
+    </g>
+  </g>
+</svg>
