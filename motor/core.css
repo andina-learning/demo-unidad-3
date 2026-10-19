@@ -308,17 +308,54 @@ code {
   background: var(--bg-sidebar);
   color: var(--sb-text);
   display: flex; flex-direction: column;
-  overflow: hidden;
+  /* Todo el panel se desplaza junto (logo, título y lista), no solo la lista.
+     Barra nativa (teclado y lectores de pantalla), fina y en el color del panel. */
+  overflow-y: auto; overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--sb-text-mut) 35%, transparent) transparent;
   border-right: 1px solid var(--border-sb);
   transition: background .25s;
 }
 .ova-sidebar::before {
   content: '';
-  position: absolute; inset: 0;
+  /* pegado al viewport del panel para que el mesh no se vaya con el scroll */
+  position: sticky; top: 0; flex-shrink: 0;
+  height: 100vh; margin-bottom: -100vh;
   background: var(--grad-mesh);
   opacity: 0.6;
   pointer-events: none;
 }
+/* Barra compacta: aparece fija arriba cuando el título grande ya salió de la vista */
+.ova-sidebar > .ova-sidebar__compacta {   /* gana a `.ova-sidebar > *` (position: relative) */
+  position: sticky; top: 0; z-index: 3;
+  display: none;
+  align-items: center; gap: 10px;
+  padding: 10px 16px 12px;
+  background: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border-sb);
+  font-size: 0.78rem;
+  color: var(--sb-text-mut);
+}
+.ova-sidebar.is-scrolled .ova-sidebar__compacta { display: flex; }
+.ova-sidebar__compacta .tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--sb-text);
+}
+.ova-sidebar__compacta strong {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--sb-text);
+}
+.ova-sidebar__compacta .bar {
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 3px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+.ova-sidebar__compacta .bar-fill { height: 100%; background: var(--grad-brand); }
+[data-sidebar-collapsed="true"] .ova-sidebar__compacta { display: none !important; }
 [data-version="clara"] .ova-sidebar::before {
   opacity: 0.4;  /* mesh más sutil en claro */
 }
@@ -400,10 +437,8 @@ code {
 
 /* Sidebar menu (ruta de aprendizaje) */
 .ova-sidebar__menu {
-  flex: 1;
-  overflow-y: auto;
+  flex: 1 0 auto;   /* crece con la lista; el scroll lo hace el panel completo */
   padding: 12px 16px 20px;
-  scrollbar-width: thin;
 }
 .ova-sidebar__menu-item {
   display: grid;
@@ -741,17 +776,24 @@ code {
   cursor: pointer;
   align-items: center; justify-content: center;
 }
-@media (max-width: 1024px) { .ova-burger { display: flex; } }
+@media (max-width: 1024px) {
+  .ova-burger { display: flex; transition: left .35s cubic-bezier(.2,.7,.2,1); }
+  /* menú abierto: el botón (ya ✕) sale a la derecha del panel, sobre el contenido */
+  .ova-burger.is-open { left: min(calc(var(--sidebar-w) + 14px), calc(100vw - 58px)); }
+  /* y los botones de la barra superior se apartan para que la ✕ no los pise */
+  .ova-menu-abierto .ova-topbar__actions { visibility: hidden; }
+}
 @media (max-width: 1024px) {
   .ova-sidebar {
     position: fixed; inset: 0 auto 0 0;
     width: var(--sidebar-w);
     z-index: 100;
     transform: translateX(-100%);
-    transition: transform .35s cubic-bezier(.2,.7,.2,1);
-    box-shadow: 30px 0 60px rgba(0,0,0,0.4);
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
   }
-  .ova-sidebar.is-open { transform: translateX(0); }
+  /* La sombra solo con el menú abierto: cerrado, su desplazamiento y su difuminado
+     se asomaban por el borde izquierdo de la pantalla. */
+  .ova-sidebar.is-open { transform: translateX(0); box-shadow: 30px 0 60px rgba(0,0,0,0.4); }
 }
 
 /* ============================================

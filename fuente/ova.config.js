@@ -66,6 +66,7 @@ module.exports = {
     { id: 'evaluacion',      titulo: 'Evaluación de la unidad',                   tipo: 'especial', icon: 'mdi:clipboard-check-outline', nota: '1 pregunta' },
     // { id: 'glosario',        titulo: 'Glosario',                                  tipo: 'especial', icon: 'mdi:book-open-variant-outline' },
     { id: 'referencias',     titulo: 'Referencias',                               tipo: 'especial', icon: 'mdi:bookmark-outline' },
+    { id: 'creditos',        titulo: 'Créditos',                                  tipo: 'especial', icon: 'mdi:account-group-outline' },
   ],
 
   /* REFERENCIAS · APA literal del DI §Referencias. Estilo de la línea (INSTITUCION §3.2): autor y

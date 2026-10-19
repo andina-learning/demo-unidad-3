@@ -20,12 +20,12 @@ Abre `http://localhost:8000/spa/`. Ese es el curso tal como lo ve el estudiante.
 | Comando | Qué hace |
 |---|---|
 | `npm run dev` | Compila y sirve el curso en `http://localhost:8000/spa/` |
-| `npm run build` | Compila `fuente/` → `dist/` (6 pantallas, en dos formatos) |
+| `npm run build` | Compila `fuente/` → `dist/` (7 pantallas, en dos formatos) |
 | `npm start` | Solo sirve `dist/` (sin recompilar). `--port 9000` cambia el puerto |
 | `npm test` | Compila y verifica que salieron todas las pantallas |
 | `npm run zip` | Compila y comprime `dist/spa` para el LMS (`npm run zip -- --multipagina` añade `dist/multipagina`) |
 
-Verás `✔ 6/6 pantallas → dist/multipagina/ + dist/spa/index.html` al compilar.
+Verás `✔ 7/7 pantallas → dist/multipagina/ + dist/spa/index.html` al compilar.
 
 > Los videos de YouTube solo cargan cuando el curso se sirve por http (LMS o `npm run dev`).
 > Abierto con doble clic desde el disco, el curso muestra en su lugar la miniatura del video

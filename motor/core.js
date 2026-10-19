@@ -58,6 +58,11 @@
     const progress = ((completed + 1) / total) * 100;
 
     el.innerHTML = `
+      <div class="ova-sidebar__compacta" aria-hidden="true">
+        ${C.course.code ? `<span class="tag">${C.course.code}</span>` : ''}
+        <strong>${completed + 1}/${total}</strong>
+        <div class="bar"><div class="bar-fill" style="width:${progress}%"></div></div>
+      </div>
       <div class="ova-sidebar__brand">
         <img class="ova-brand-logo ova-brand-logo--desktop" src="${C.brand.logo}" alt="${C.brand.name || 'OVA'}" />
         ${C.brand.logoMobile ? `<img class="ova-brand-logo ova-brand-logo--mobile" src="${C.brand.logoMobile}" alt="${C.brand.name || 'OVA'}" />` : ''}
@@ -126,6 +131,29 @@
         <div class="bar"><div class="bar-fill" style="width:${progress}%"></div></div>
       </div>
     `;
+
+    // El panel entero hace scroll: la barra compacta entra cuando el título grande sale de la vista
+    if (!el.dataset.ovaScrollBound) {
+      el.dataset.ovaScrollBound = '1';
+      el.addEventListener('scroll', () => {
+        const curso = el.querySelector('.ova-sidebar__course');
+        const limite = curso ? curso.offsetTop + curso.offsetHeight : 120;
+        el.classList.toggle('is-scrolled', el.scrollTop > limite - 8);
+      }, { passive: true });
+    }
+    // Abre en la sección actual: si el ítem activo quedó fuera de la vista, se trae
+    requestAnimationFrame(() => {
+      const act = el.querySelector('.ova-sidebar__menu-item.is-active');
+      if (!act) return;
+      const alto = el.clientHeight;
+      // posición del ítem dentro del panel (offsetTop se mediría contra el <nav>)
+      const top = act.getBoundingClientRect().top - el.getBoundingClientRect().top + el.scrollTop;
+      const bottom = top + act.offsetHeight;
+      if (top < el.scrollTop + 56 || bottom > el.scrollTop + alto) {
+        el.scrollTop = Math.max(0, top - Math.round(alto / 2));
+        el.dispatchEvent(new Event('scroll'));
+      }
+    });
   }
 
   /* ============================================
@@ -657,7 +685,26 @@
     const burger = document.querySelector('[data-ova-burger]');
     const sidebar = document.querySelector('[data-ova-sidebar]');
     if (!burger || !sidebar) return;
+    // Abierto, el botón se corre fuera del panel y pasa a ✕ (no tapa el rótulo del menú).
+    // Se sincroniza con un observador porque el menú también se cierra al cambiar de pantalla.
+    const icono = burger.querySelector('iconify-icon');
+    const sync = () => {
+      const abierto = sidebar.classList.contains('is-open');
+      burger.classList.toggle('is-open', abierto);
+      document.body.classList.toggle('ova-menu-abierto', abierto);
+      burger.setAttribute('aria-expanded', String(abierto));
+      burger.setAttribute('aria-label', abierto ? 'Cerrar el menú' : 'Abrir el menú');
+      if (icono) icono.setAttribute('icon', abierto ? 'mdi:close' : 'mdi:menu');
+    };
     burger.addEventListener('click', () => sidebar.classList.toggle('is-open'));
+    // Tocar fuera del panel lo cierra
+    document.addEventListener('click', e => {
+      if (!sidebar.classList.contains('is-open')) return;
+      if (sidebar.contains(e.target) || burger.contains(e.target)) return;
+      sidebar.classList.remove('is-open');
+    });
+    new MutationObserver(sync).observe(sidebar, { attributes: true, attributeFilter: ['class'] });
+    sync();
   }
 
   // Reveal on scroll
@@ -962,11 +1009,10 @@
       const m = C.menu.find(x => x.id === id);
       document.title = m.titulo + ' · ' + C.course.name;
       // sidebar: re-render con la pantalla activa, preservando scroll y colapso
-      const menuViejo = document.querySelector('.ova-sidebar__menu');
-      const scroll = menuViejo ? menuViejo.scrollTop : 0;
+      const panel = document.querySelector('[data-ova-sidebar]');
+      const scroll = panel ? panel.scrollTop : 0;
       renderSidebar(id);
-      const menuNuevo = document.querySelector('.ova-sidebar__menu');
-      if (menuNuevo) menuNuevo.scrollTop = scroll;
+      if (panel) { panel.scrollTop = scroll; panel.dispatchEvent(new Event('scroll')); }
       if (reaplicarColapso) reaplicarColapso();
       document.querySelector('[data-ova-sidebar]')?.classList.remove('is-open'); // cerrar overlay mobile
       const esPortadaFull = id === porDefecto && !!(C.course && C.course.portadaFullBleed);
